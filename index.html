@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love</title>
+    <style>
+        body {
+            background-color: #f8d6e2; /* Lighter baby pink background */
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            position: relative;
+            overflow: hidden;
+            height: 100vh; /* Ensure the page takes up the full height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #f8a3c5; /* Lighter hot pink hearts */
+            clip-path: polygon(50% 0%, 0% 35%, 50% 100%, 100% 35%);
+            animation: float 6s infinite ease-in-out;
+        }
+
+        /* Random positioning of hearts */
+        .heart:nth-child(odd) {
+            animation-duration: 6s;
+        }
+        .heart:nth-child(even) {
+            animation-duration: 7s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0);
+            }
+            50% {
+                transform: translateY(-300px) rotate(180deg);
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+
+        .message-box {
+            background-color: #ffffff; /* White background for the box */
+            border: 2px solid #f8a3c5; /* Lighter pink border */
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            z-index: 1; /* Ensure it's on top of other elements */
+            font-size: 2em;
+            color: #f8a3c5; /* Lighter pink text */
+            max-width: 90%; /* Responsive width */
+            width: 400px; /* Set width for the box */
+        }
+
+        h1 {
+            text-align: center;
+            color: #f8a3c5; /* Lighter pink title */
+            margin-top: 20px;
+        }
+
+        .button {
+            background-color: #f8a3c5; /* Button with the same light pink */
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #f88399; /* Slightly darker pink when hovered */
+        }
+
+        .love-message {
+            position: absolute;
+            color: #f8a3c5;
+            font-size: 2em;
+            z-index: 2;
+            pointer-events: none;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="message-box">
+        <p>I love you, baby!</p>
+    </div>
+
+    <!-- Button that triggers the I love you effect -->
+    <button class="button" onclick="fillScreenWithLove()">Click Me!</button>
+
+    <!-- Create some hearts in random positions -->
+    <div class="heart" style="top: 20%; left: 15%;"></div>
+    <div class="heart" style="top: 30%; left: 40%;"></div>
+    <div class="heart" style="top: 50%; left: 60%;"></div>
+    <div class="heart" style="top: 10%; left: 80%;"></div>
+    <div class="heart" style="top: 70%; left: 25%;"></div>
+    <div class="heart" style="top: 60%; left: 50%;"></div>
+
+    <script>
+        function fillScreenWithLove() {
+            const body = document.body;
+
+            // Create 50 "I love you" messages
+            for (let i = 0; i < 50; i++) {
+                let loveMessage = document.createElement('div');
+                loveMessage.classList.add('love-message');
+                loveMessage.textContent = 'I love you';
+
+                // Random position on the screen
+                loveMessage.style.top = Math.random() * 100 + '%';
+                loveMessage.style.left = Math.random() * 100 + '%';
+                
+                // Append the message to the body
+                body.appendChild(loveMessage);
+                
+                // Remove the message after 2 seconds
+                setTimeout(() => {
+                    loveMessage.remove();
+                }, 2000);
+            }
+        }
+    </script>
+
+</body>
+</html>
